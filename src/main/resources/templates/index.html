@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title th:text="#{content.title}">掲示板</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link th:href="@{/css/index.css}" rel="stylesheet">
+
+</head>
+
+<body>
+	<section>
+		<div class="form_content">
+							
+			<form action="/logout" method="post" th:object="${formModel}">
+				<input type="hidden" name="name" th:value="*{name}">
+				<input type="submit" value="logout">
+			</form>
+			
+			<h1 th:text="#{content.title}">掲示板</h1>
+				
+			<form method="post" action="/POST" th:object="${formModel}">
+				<label for="name">名前</label><br>
+				<input type="text" name="name" th:value="*{name}" /><br>
+				<label for="text">コメント</label><br>
+				<textarea type="text" name="text" th:value="*{text}"></textarea><br>					
+				<div class="form_submit">
+					<input type="submit">
+				</div>
+				</form>
+		</div>
+
+		<div class="display_content">
+			<table>
+				<tr>
+					<th>時間</th>
+					<th>名前</th>
+					<th>コメント</th>
+				</tr>
+					<tr th:each="obj : ${datalist}">
+					<td th:text="${obj.stringTime}"></td>
+					<td th:text="${obj.name}"></td>
+					<td th:text="${obj.text}"></td>
+
+				</tr>
+			</table>
+		</div>
+	</section>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LOGIN</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link th:href="@{/css/index.css}" rel="stylesheet">
+</head>
+
+
+
+<body>
+	<section>
+		<div class="form_content">
+			<h1>LOGIN PAGE</h1>
+			<form action="/login" method="post">
+				<label for="name">名前</label><br>
+				<input type="text" name="name"/><br>
+				<label for="password">password</label><br>
+				<input type="text" name="password"><br>					
+				<div class="form_submit">
+					<input type="submit">
+				</div>
+			</form>
+			<p th:text="${msg}"></p>
+		</div>
+
+</body>
+
+
+</html>
