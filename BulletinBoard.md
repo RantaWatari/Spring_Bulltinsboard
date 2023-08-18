@@ -1,0 +1,1 @@
+https://github.com/RantaWatari/Spring_Bulltinsboard.git

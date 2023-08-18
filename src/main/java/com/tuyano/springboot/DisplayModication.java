@@ -6,8 +6,7 @@ import java.util.List;
 public class DisplayModication {
     
 	public static Iterable<UserData> reverseSort(Iterable<UserData> list){
-		Collections.reverse((List<?>) list);
-		
+		Collections.reverse((List<UserData>) list);
 		// list.forEach(s -> System.out.println(s.getTime()));
 		
 		return list;
