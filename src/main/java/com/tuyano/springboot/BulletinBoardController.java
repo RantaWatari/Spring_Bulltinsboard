@@ -50,9 +50,7 @@ public class BulletinBoardController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView index(
 			ModelAndView mav) {
-		return new ModelAndView("redirect:/login");
-		
-		
+			return new ModelAndView("redirect:/login");
 	}
 
 	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
@@ -60,7 +58,7 @@ public class BulletinBoardController {
 			@ModelAttribute("formModel") UserData userdata,
 			@PathVariable String name,
 			ModelAndView mav) {
-		
+	
 		if(Certification.check(name, accountRepository.findAll())) {
 			mav.setViewName("index");
 			mav.addObject("datalist",DisplayModication.reverseSort(repository.findAll()));
@@ -102,7 +100,9 @@ public class BulletinBoardController {
 			@RequestParam String password,
 			ModelAndView mav) {
 		if(Certification.admit(name, password, accountRepository.findAll()) != null) {
-			return new ModelAndView("redirect:/"+name);	
+			
+			return new ModelAndView("redirect:/"+name);
+		
 		}else {
 			mav.setViewName("login");
 			mav.addObject("msg","Not Acccount!!");
@@ -118,13 +118,16 @@ public class BulletinBoardController {
 	public ModelAndView logout(
 			@RequestParam String name,
 			ModelAndView mav) {
+
 //		accountRepository.findByNameLike(name).setLoggedIn(false);
-//		System.out.println(accountRepository.findByNameLike(name));
+		System.out.println(accountRepository.findByNameLike(name).get(0).getName());
+		System.out.println(accountRepository.findByName(name).getName()+" !");
+		
+		Certification.logout(name, accountRepository.findByNameLike(name));
 		
 		return new ModelAndView("redirect:/login");
 	}
 	
-
 }
 
 

@@ -10,4 +10,7 @@ import com.tuyano.springboot.AccountData;
 @Repository
 public interface AccountDataRepository  extends JpaRepository<AccountData, Long> {
 	public List<AccountData> findByNameLike(String name);
+	public AccountData findByName(String name);
+	public List<AccountData> findByPassWord(String passWord);
+
 }

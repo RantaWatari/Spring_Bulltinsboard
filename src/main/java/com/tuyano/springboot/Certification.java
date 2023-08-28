@@ -31,4 +31,14 @@ public class Certification {
 		});
 		return checkResult;
 	}
+
+
+	public static void logout(String name, Iterable<AccountData> accountlist){
+		accountlist.forEach(account -> {
+			if(account.getName().equals(name)){
+				account.setLoggedIn(false);
+				System.out.println(account.getName() + " is " + account.getLoggedIn());
+			}
+		});
+	}
 }
