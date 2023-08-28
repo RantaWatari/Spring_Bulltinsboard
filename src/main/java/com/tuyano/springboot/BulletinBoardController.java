@@ -53,7 +53,7 @@ public class BulletinBoardController {
 			return new ModelAndView("redirect:/login");
 	}
 
-	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
+	@RequestMapping(value = "/home/{name}", method = RequestMethod.GET)
 	public ModelAndView index(
 			@ModelAttribute("formModel") UserData userdata,
 			@PathVariable String name,
@@ -81,7 +81,7 @@ public class BulletinBoardController {
 			//LocalDateTime time = TimeGenerate.now();
 			userdata.setStringTime(time);
 			repository.saveAndFlush(userdata);
-			return new ModelAndView("redirect:/"+userdata.getName());
+			return new ModelAndView("redirect:/home/"+userdata.getName());
 		}else {
 			return new ModelAndView("redirect:/login");
 		}
@@ -101,7 +101,7 @@ public class BulletinBoardController {
 			ModelAndView mav) {
 		if(Certification.admit(name, password, accountRepository.findAll()) != null) {
 			
-			return new ModelAndView("redirect:/"+name);
+			return new ModelAndView("redirect:/home/"+name);
 		
 		}else {
 			mav.setViewName("login");
