@@ -21,31 +21,30 @@ public class BulletinBoardController {
 	
 	// テスト用のアカウント
 	@PostConstruct
-	public void init(){
+	private void init(){
 		AccountData testAccount = new AccountData();
 		testAccount.setName("testuser");
 		testAccount.setPassWord("testpass");
 		accountRepository.saveAndFlush(testAccount);
-		
-		AccountData testAccount2 = new AccountData();
-		testAccount2.setName("watari");
-		testAccount2.setPassWord("ranta");
-		accountRepository.saveAndFlush(testAccount2);
-		
-		AccountData testAccount3 = new AccountData();
-		testAccount3.setName("a");
-		testAccount3.setPassWord("a");
-		accountRepository.saveAndFlush(testAccount3);
-	}
-	
+//		
+//		AccountData testAccount2 = new AccountData();
+//		testAccount2.setName("watari");
+//		testAccount2.setPassWord("ranta");
+//		accountRepository.saveAndFlush(testAccount2);
+//		
+//		AccountData testAccount3 = new AccountData();
+//		testAccount3.setName("a");
+//		testAccount3.setPassWord("a");
+//		accountRepository.saveAndFlush(testAccount3);
+	}	
 	@Autowired
 	UserDataRepository repository;
 	
 	@Autowired
 	AccountDataRepository accountRepository;
 	
-	@Autowired
-	private HttpSession session;
+	//@Autowired
+	//private HttpSession session;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView index(
@@ -75,7 +74,6 @@ public class BulletinBoardController {
 	public ModelAndView form(
 			@ModelAttribute("formModel") UserData userdata, 
 			ModelAndView mav) {
-		
 		if(Certification.check(userdata.getName(), accountRepository.findAll())) {
 			String time = TimeGenerate.nowToString();
 			//LocalDateTime time = TimeGenerate.now();
@@ -120,8 +118,8 @@ public class BulletinBoardController {
 			ModelAndView mav) {
 
 //		accountRepository.findByNameLike(name).setLoggedIn(false);
-		System.out.println(accountRepository.findByNameLike(name).get(0).getName());
-		System.out.println(accountRepository.findByName(name).getName()+" !");
+		//System.out.println(accountRepository.findByNameLike(name).get(0).getName());
+		//System.out.println(accountRepository.findByName(name).getName()+" !");
 		
 		Certification.logout(name, accountRepository.findByNameLike(name));
 		
